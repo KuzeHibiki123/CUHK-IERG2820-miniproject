@@ -1,0 +1,5 @@
+create_clock -name CLK_50 -period 20.000 [get_ports {CLK_50}]
+# Inputs pass through explicit synchronizers. Add board-specific I/O constraints
+# before hardware timing signoff. CCLK is an output, not an internal clock.
+
+derive_clock_uncertainty

@@ -1,0 +1,56 @@
+IERG2820 Verilog verification - 2026-10-15 (Asia/Shanghai)
+Device: EP4CE6E22C8. SHARE_MATH=0; Q1_CHAIN_8BIT=0.
+No K4 reset; K2 selects 50 MHz / 1 Hz; Q2 binary/display/LED10 aligned.
+All 13 testbenches exited successfully.
+Quartus: 601 LE, 260 registers, 3 M9K, 2 DSP 9-bit elements.
+Zero errors, 21 warnings; all nine internal timing checks pass.
+See AREA_OPTIMIZATION_20261015.md and build/area15_release_audit.json.
+
+PASS Q1: 1032 result/status checks, all 1024 4-bit input cases
+tb/tb_question1.v:63: $finish called at 82300000 (1ps)
+PASS Q2: 393992 register/result/status checks; all operand pairs for 6 arithmetic opcodes
+tb/tb_question2.v:87: $finish called at 39383820000 (1ps)
+PASS displays: all 256 decimal/hex values, 16 glyphs, polarities, DP, blank and operators
+tb/tb_displays.v:64: $finish called at 549000 (1ps)
+VCD info: dumpfile build/top.vcd opened for output.
+PASS top: pin bit order, decimal DP, debounce, mode select, CCLK, queued execution, K1 and ignored K4
+tb/tb_top.v:91: $finish called at 12812000 (1ps)
+PASS filter equivalence: 18 configurations, 20000 stimulus cycles, identical level/rise every cycle
+tb/tb_filter_equivalence.v:43: $finish called at 400860000 (1ps)
+PASS core equivalence: 100000 cycles, both Q1 widths and all Q2 architectural outputs match baseline
+tb/tb_core_equivalence.v:51: $finish called at 2000080000 (1ps)
+PASS top equivalence: 100000 cycles, both Q1 widths, all Q1/Q2 opcodes, every LED/segment/CCLK output matches baseline
+tb/tb_top_equivalence.v:62: $finish called at 2000100000 (1ps)
+PASS current defaults: power-up 0/0/+ with floating K4; high/unknown K4 ignored; stopped clock retains state
+tb/tb_display_startup.v:20: $finish called at 981000 (1ps)
+PASS Q1 15*15 = 225 = 8'b11100001, displays C1/C3/C2 = 2/2/5
+PASS Q1 repeated equals: low nibble of 225 is 1; 1*15=15
+PASS actual default Q1: 4,8,16,0,0,0,0; repeat uses only low four bits
+PASS Q2 15*17 = 255 = 8'b11111111, displays C1/C3/C2 = 2/5/5
+PASS Q2 255*255 = 65025 = 16'hFE01, B=254/A=1, default display=1
+PASS Q2 OUT B displays high byte 254
+tb/tb_multiplication_bounds.v:43: $finish called at 17691000 (1ps)
+Q1 step 1: CHAIN_8BIT=0 -> 4, CHAIN_8BIT=1 -> 4, overflow=0
+Q1 step 2: CHAIN_8BIT=0 -> 8, CHAIN_8BIT=1 -> 8, overflow=0
+Q1 step 3: CHAIN_8BIT=0 -> 16, CHAIN_8BIT=1 -> 16, overflow=0
+Q1 step 4: CHAIN_8BIT=0 -> 0, CHAIN_8BIT=1 -> 32, overflow=0
+Q1 step 5: CHAIN_8BIT=0 -> 0, CHAIN_8BIT=1 -> 64, overflow=0
+Q1 step 6: CHAIN_8BIT=0 -> 0, CHAIN_8BIT=1 -> 128, overflow=0
+Q1 step 7: CHAIN_8BIT=0 -> 0, CHAIN_8BIT=1 -> 0, overflow=1
+PASS reported Q1 case: 8*4=32, next equals lab default=0 / optional full-byte=128
+Q2 without LOAD B between MUL: A=32/B=0, then A=0/B=0 (specified register behavior)
+Q2 with B reloaded to 2: A=4, B(high product)=0
+Q2 with B reloaded to 2: A=8, B(high product)=0
+Q2 with B reloaded to 2: A=16, B(high product)=0
+Q2 with B reloaded to 2: A=32, B(high product)=0
+Q2 with B reloaded to 2: A=64, B(high product)=0
+Q2 with B reloaded to 2: A=128, B(high product)=0
+Q2 with B reloaded to 2: A=0, B(high product)=1
+PASS repeated multiply: both chaining widths, shared/local math, LED flags, full decimal segments, Q2 high-byte storage
+tb/tb_repeat_multiply.v:70: $finish called at 32091000 (1ps)
+PASS clock switch: fast default, 1 Hz period, K2 debounce/hold/toggle, CCLK edge alignment, pending instruction, ignored K4
+tb/tb_clock_switch.v:52: $finish called at 83732000 (1ps)
+PASS display ROM: 8192 input combinations, both polarities, preview DP, all operators, decimal/hex, reset and exact one-cycle latency
+tb/tb_display_rom.v:42: $finish called at 81927000 (1ps)
+PASS Q2 LED/display: 9917 cycle checks including LED10 zero indication, default A, LOAD B/C, OUT A/B/C, sticky selection, arithmetic, NOP, decimal/hex and slow clock
+tb/tb_q2_led_display.v:63: $finish called at 198793000 (1ps)
